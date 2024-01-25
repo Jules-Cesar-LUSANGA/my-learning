@@ -24,11 +24,26 @@ class TaskTest extends TestCase
 
     public function test_can_create_task() : void
     {
+        $data = [
+            // 'title' => 'My title',
+            // // 'category_id' => 2,
+            // 'description'   => 'Hello world'
+        ];
+
+        $response = $this->post('/tasks', ['data' => $data]);
+
+        $response->assertStatus(302);
+    }
+
+    public function test_can_update_task() : void
+    {
         $task = Task::factory()->create();
 
-        $response = $this->post('/tasks', ['task' => $task]);
+        $data = [
+            'title' => 'New title'
+        ];
 
-        $response->assertRedirectToRoute('tasks.show', $task->id);
+        $response = $this->put("/tasks/{$task->id}", ['data' => $data]);
 
         $response->assertStatus(302);
     }

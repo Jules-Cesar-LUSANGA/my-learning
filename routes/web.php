@@ -20,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::resource('tasks', TaskController::class);
+Route::post('/tasks/{task}', [TaskController::class, 'markAsDone'])->name('tasks.markAsDone');

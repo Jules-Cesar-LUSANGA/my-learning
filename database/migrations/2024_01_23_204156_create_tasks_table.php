@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(Category::class)->cascadeOnDelete();
             $table->text('title');
             $table->longText('description');
-            $table->boolean('done')->nullable();
+            $table->boolean('done')->default(false);
             $table->timestamps();
         });
     }
